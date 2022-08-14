@@ -1,9 +1,9 @@
-#include <SDL.h>
+#include <SDL2/SDL.h>
 #include <stdio.h>
 
 int main(int arc, char * argv[]) {
 
-    const int SCREEN_WIDTH = 800;
+  const int SCREEN_WIDTH = 800;
     const int SCREEN_HEIGHT = 600;
 
     if (SDL_Init( SDL_INIT_VIDEO ) < 0) {
