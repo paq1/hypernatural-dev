@@ -1,13 +1,13 @@
 #include <SDL.h>
-#include <iostream>
+#include <stdio.h>
 
-const int SCREEN_WIDTH = 800;
-const int SCREEN_HEIGHT = 600;
+int main(int arc, char * argv[]) {
 
-int main(int arc, char ** argv) {
+    const int SCREEN_WIDTH = 800;
+    const int SCREEN_HEIGHT = 600;
 
     if (SDL_Init( SDL_INIT_VIDEO ) < 0) {
-        std::cout << "SDL could not initialize! SDL_Error: " << SDL_GetError() << std::endl;
+        printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
     } else {
         
         SDL_CreateWindow(
