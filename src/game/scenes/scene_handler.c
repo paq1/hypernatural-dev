@@ -15,7 +15,7 @@ scene_handler_t* create_scene_handler() {
     return scene_handler;
 }
 
-void handle_scenes(scene_handler_t* scene_handler) {
+void handle_scenes(scene_handler_t* scene_handler, list_t* events) {
     if (scene_handler->current_scene == MENU) {
         // on creer alors notre scene menu
         if (scene_handler->scene_menu == NULL) {
@@ -25,7 +25,7 @@ void handle_scenes(scene_handler_t* scene_handler) {
         }
 
         // on update notre scene menu
-        update_scene_menu(scene_handler->scene_menu);
+        update_scene_menu(scene_handler->scene_menu, events);
 
         // on affiche notre scene menu
         draw_scene_menu(scene_handler->scene_menu);

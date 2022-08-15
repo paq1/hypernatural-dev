@@ -4,6 +4,9 @@
 
 #include "game/scenes/scene_handler.h"
 
+#include "core/sdd/list/list.h"
+#include "game/enums/events_enum.h"
+
 int main(int arc, char * argv[]) {
 
     const int SCREEN_WIDTH = 800;
@@ -38,15 +41,26 @@ int main(int arc, char * argv[]) {
     SDL_bool launched = SDL_TRUE;
 
     scene_handler_t* scene_handler = create_scene_handler();
+    
+    // todo : faire une factory pour les événements ;)
+    enum event_enum* space_bar_pressed = (enum event_enum*) malloc(sizeof(enum event_enum));
+    *space_bar_pressed = SPACE_BAR_PRESSED;
 
     while (launched) {
         SDL_Event event;
+        list_t* events = NULL; // les evenement que l'on souhaite catcher pour les donner à nos scenes :)
+        
         while (SDL_PollEvent(&event)) {
 
             switch (event.type) {
                 case SDL_QUIT:
                     launched = SDL_FALSE;
                     break;
+                case SDL_KEYDOWN:
+                    if (event.key.keysym.sym == SDLK_SPACE) {
+                        // printf("space pressed\n");
+                        events = list_prepend(events, (void*) space_bar_pressed);
+                    }
                 default:
                     break;
             }
@@ -54,12 +68,21 @@ int main(int arc, char * argv[]) {
 
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 
-        handle_scenes(scene_handler);
+        handle_scenes(scene_handler, events);
+
+        // suppression de la liste d'evenement dans le but de la clean
+        free_list(&events);
+        if (events) {
+            fprintf(stderr, "ERROR: la liste d'evenements n'a pas ete liberee\n");
+        }
 
         SDL_RenderClear(renderer);
         SDL_RenderPresent(renderer);
     }
 
+
+    // suppression des evenements
+    free(space_bar_pressed);
 
     free_scene_handler(&scene_handler);
     if (scene_handler != NULL) {
