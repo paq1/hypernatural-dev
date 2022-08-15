@@ -16,6 +16,8 @@ endif(WIN32)
 add_executable(
         ${NOM_PROJET} 
         src/main.c
+        src/game/scenes/scene_menu/scene_menu.c
+        src/game/scenes/scene_handler.c
 )
 
 # linkage librairie

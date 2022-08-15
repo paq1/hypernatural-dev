@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "game/scenes/scene_handler.h"
+
 int main(int arc, char * argv[]) {
 
     const int SCREEN_WIDTH = 800;
@@ -35,6 +37,8 @@ int main(int arc, char * argv[]) {
 
     SDL_bool launched = SDL_TRUE;
 
+    scene_handler_t* scene_handler = create_scene_handler();
+
     while (launched) {
         SDL_Event event;
         while (SDL_PollEvent(&event)) {
@@ -48,17 +52,19 @@ int main(int arc, char * argv[]) {
             }
         }
 
-
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 
-        // todo update
-
-        // todo draw
+        handle_scenes(scene_handler);
 
         SDL_RenderClear(renderer);
         SDL_RenderPresent(renderer);
     }
 
+
+    free_scene_handler(&scene_handler);
+    if (scene_handler != NULL) {
+        fprintf(stderr, "ERROR: le scene handler n'a pas ete liberee\n");
+    }
 
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
