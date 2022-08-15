@@ -3,12 +3,14 @@
 
 #include "../enums/scene_enum.h"
 #include "scene_menu/scene_menu.h"
+#include "scene_donjon/scene_donjon.h"
 #include "../../core/sdd/list/list.h"
 
 typedef struct {
     enum scene_enum current_scene;
     // todo : ajouter les scenes ici
     scene_menu_t* scene_menu;
+    scene_donjon_t* scene_donjon;
 } scene_handler_t;
 
 scene_handler_t* create_scene_handler();

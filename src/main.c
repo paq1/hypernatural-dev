@@ -45,21 +45,26 @@ int main(int arc, char * argv[]) {
     // todo : faire une factory pour les événements ;)
     enum event_enum* space_bar_pressed = (enum event_enum*) malloc(sizeof(enum event_enum));
     *space_bar_pressed = SPACE_BAR_PRESSED;
+    enum event_enum* escape_pressed = (enum event_enum*) malloc(sizeof(enum event_enum));
+    *escape_pressed = ESCAPE_PRESSED;
 
     while (launched) {
         SDL_Event event;
         list_t* events = NULL; // les evenement que l'on souhaite catcher pour les donner à nos scenes :)
         
         while (SDL_PollEvent(&event)) {
-
             switch (event.type) {
                 case SDL_QUIT:
                     launched = SDL_FALSE;
                     break;
                 case SDL_KEYDOWN:
                     if (event.key.keysym.sym == SDLK_SPACE) {
-                        // printf("space pressed\n");
+                        printf("space pressed (main)\n");
                         events = list_prepend(events, (void*) space_bar_pressed);
+                    }
+                    if (event.key.keysym.sym == SDLK_ESCAPE) {
+                        // printf("space pressed\n");
+                        events = list_prepend(events, (void*) escape_pressed);
                     }
                 default:
                     break;
@@ -68,7 +73,8 @@ int main(int arc, char * argv[]) {
 
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 
-        handle_scenes(scene_handler, events);
+        // maj et affiche les scenes
+        handle_scenes(scene_handler, events); 
 
         // suppression de la liste d'evenement dans le but de la clean
         free_list(&events);
@@ -83,6 +89,7 @@ int main(int arc, char * argv[]) {
 
     // suppression des evenements
     free(space_bar_pressed);
+    free(escape_pressed);
 
     free_scene_handler(&scene_handler);
     if (scene_handler != NULL) {
