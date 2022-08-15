@@ -21,15 +21,15 @@ scene_handler_t* create_scene_handler() {
     return scene_handler;
 }
 
-void handle_scenes(scene_handler_t* scene_handler, list_t* events) {
+void handle_scenes(scene_handler_t* scene_handler, list_t* events, SDL_Renderer* renderer) {
     if (scene_handler->current_scene == MENU) {
         update_scene_menu(scene_handler->scene_menu, events);
-        draw_scene_menu(scene_handler->scene_menu);
+        draw_scene_menu(scene_handler->scene_menu, renderer);
         gestion_evenement_menu(scene_handler, events);
     }
     else if (scene_handler->current_scene == DONJON) {
         update_scene_donjon(scene_handler->scene_donjon, events);
-        draw_scene_donjon(scene_handler->scene_donjon);
+        draw_scene_donjon(scene_handler->scene_donjon, renderer);
         gestion_evenement_donjon(scene_handler, events);
     }
 }

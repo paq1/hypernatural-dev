@@ -74,7 +74,7 @@ int main(int arc, char * argv[]) {
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 
         // maj et affiche les scenes
-        handle_scenes(scene_handler, events); 
+        handle_scenes(scene_handler, events, renderer);
 
         // suppression de la liste d'evenement dans le but de la clean
         free_list(&events);
@@ -85,7 +85,6 @@ int main(int arc, char * argv[]) {
         SDL_RenderClear(renderer);
         SDL_RenderPresent(renderer);
     }
-
 
     // suppression des evenements
     free(space_bar_pressed);

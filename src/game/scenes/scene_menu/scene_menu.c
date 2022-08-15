@@ -16,5 +16,5 @@ void update_scene_menu(scene_menu_t* scene_menu, list_t* events) {
         events = events->next;
     }
 }
-void draw_scene_menu(scene_menu_t* scene_menu) {
+void draw_scene_menu(scene_menu_t* scene_menu, SDL_Renderer* renderer) {
 }

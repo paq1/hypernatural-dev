@@ -17,5 +17,5 @@ void update_scene_donjon(scene_donjon_t* scene_donjon, list_t* events) {
         events = events->next;
     }
 }
-void draw_scene_donjon(scene_donjon_t* scene_donjon) {
+void draw_scene_donjon(scene_donjon_t* scene_donjon, SDL_Renderer* renderer) {
 }
