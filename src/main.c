@@ -1,4 +1,5 @@
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -15,6 +16,14 @@ int main(int arc, char * argv[]) {
     if (SDL_Init( SDL_INIT_VIDEO ) < 0) {
         printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
         exit(EXIT_FAILURE);
+    }
+
+    if (TTF_Init() == -1) {
+        printf("SDL_ttf could not initialize! SDL_ttf Error: %s", TTF_GetError());
+        SDL_Quit();
+        exit(EXIT_FAILURE);
+    } else {
+        printf("[info] SDL_ttf started\n");
     }
         
     SDL_Window* window = SDL_CreateWindow(
@@ -40,7 +49,7 @@ int main(int arc, char * argv[]) {
 
     SDL_bool launched = SDL_TRUE;
 
-    scene_handler_t* scene_handler = create_scene_handler();
+    scene_handler_t* scene_handler = create_scene_handler(renderer);
     
     // todo : faire une factory pour les événements ;)
     enum event_enum* space_bar_pressed = (enum event_enum*) malloc(sizeof(enum event_enum));
@@ -72,6 +81,8 @@ int main(int arc, char * argv[]) {
         }
 
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+        
+        SDL_RenderClear(renderer);
 
         // maj et affiche les scenes
         handle_scenes(scene_handler, events, renderer);
@@ -82,7 +93,7 @@ int main(int arc, char * argv[]) {
             fprintf(stderr, "ERROR: la liste d'evenements n'a pas ete liberee\n");
         }
 
-        SDL_RenderClear(renderer);
+        
         SDL_RenderPresent(renderer);
     }
 
@@ -98,6 +109,7 @@ int main(int arc, char * argv[]) {
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
+    TTF_Quit();
 
     return EXIT_SUCCESS;
 }

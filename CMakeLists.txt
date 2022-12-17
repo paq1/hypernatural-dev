@@ -17,6 +17,7 @@ add_executable(
         ${NOM_PROJET} 
         src/main.c
         src/core/sdd/list/list.c
+        src/game/services/text_service.c
         src/game/scenes/scene_menu/scene_menu.c
         src/game/scenes/scene_donjon/scene_donjon.c
         src/game/scenes/scene_handler.c

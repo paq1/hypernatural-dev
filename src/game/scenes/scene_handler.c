@@ -7,13 +7,12 @@
 
 /*private*/void gestion_evenement_menu(scene_handler_t* scene_handler, list_t* events);
 /*private*/void gestion_evenement_donjon(scene_handler_t* scene_handler, list_t* events);
-/*private*/void free_scene_menu(scene_menu_t** scene_menu);
 /*private*/scene_donjon_t* create_scene_donjon();
 /*private*/void free_scene_donjon(scene_donjon_t** scene_donjon);
 
-scene_handler_t* create_scene_handler() {
-    scene_menu_t* scene_menu = (scene_menu_t*) malloc(sizeof(scene_menu_t));
-    *scene_menu = (scene_menu_t) { "Menu" };
+scene_handler_t* create_scene_handler(SDL_Renderer* renderer) {
+    printf("[info] creation scene menu\n");
+    scene_menu_t* scene_menu = create_scene_menu(renderer);
 
     scene_handler_t* scene_handler = (scene_handler_t*) malloc(sizeof(scene_handler_t));
     *scene_handler = (scene_handler_t) { MENU, scene_menu, NULL };
@@ -75,13 +74,6 @@ void free_scene_handler(scene_handler_t** scene_handler) {
             // todo : free_scene_donjon(&scene_handler->scene_donjon);
         }
         events = events->next;
-    }
-}
-
-/*private*/void free_scene_menu(scene_menu_t** scene_menu) {
-    if (*scene_menu != NULL) {
-        free(*scene_menu);
-        *scene_menu = NULL;
     }
 }
 
