@@ -6,24 +6,16 @@
 #include <SDL2/SDL.h>
 
 #include "../../enums/events_enum.h"
+#include "../../factories/font_factory.h"
 
 scene_menu_t* create_scene_menu(SDL_Renderer* renderer) {
     scene_menu_t* scene_menu = (scene_menu_t*) malloc(sizeof(scene_menu_t));
 
-
-    // todo : sortir dans une factory
-    TTF_Font* font = TTF_OpenFont("../assets/fonts/dpcomic.ttf", 25);
-    if (font == NULL) {
-        printf("ERROR: TTF_OpenFont: %s\n", TTF_GetError());
-        exit(EXIT_FAILURE);
-    }
-
     SDL_Color color = { 255, 255, 255 };
 
-    text_t* text_titre = create_text(renderer, "Menu", 0, 0, font, color);
+    text_t* text_titre = create_text(renderer, "Menu", 0, 0, get_font_factory()->main_font, color);
 
-
-    *scene_menu = (scene_menu_t) { "Menu", font, text_titre };
+    *scene_menu = (scene_menu_t) { "Menu", text_titre };
 
     return scene_menu;
 }
@@ -43,7 +35,6 @@ void draw_scene_menu(scene_menu_t* scene_menu, SDL_Renderer* renderer) {
 
 void free_scene_menu(scene_menu_t** scene_menu) {
     free_text(&(*scene_menu)->text_titre);
-    free((*scene_menu)->font);
     free(*scene_menu);
     *scene_menu = NULL;
 }

@@ -10,8 +10,6 @@
 typedef struct {
     char* title;
     // todo : mettre les elements du menu ici
-
-    TTF_Font* font; // todo: sortir dans une factory
     text_t* text_titre;
 } scene_menu_t;
 
