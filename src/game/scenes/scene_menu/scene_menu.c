@@ -10,11 +10,8 @@
 
 scene_menu_t* create_scene_menu(SDL_Renderer* renderer) {
     scene_menu_t* scene_menu = (scene_menu_t*) malloc(sizeof(scene_menu_t));
-
     SDL_Color color = { 255, 255, 255 };
-
-    text_t* text_titre = create_text(renderer, "Menu", 0, 0, get_font_factory()->main_font, color);
-
+    text_t* text_titre = create_text(renderer, "Hypernatural", 800 / 2 - 50, 0, get_font_factory()->main_font, color);
     *scene_menu = (scene_menu_t) { "Menu", text_titre };
 
     return scene_menu;
