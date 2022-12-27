@@ -21,6 +21,7 @@ add_executable(
         src/game/services/text_service.c
         src/game/scenes/scene_menu/scene_menu.c
         src/game/scenes/scene_donjon/scene_donjon.c
+        src/game/scenes/scene_cabane/scene_cabane.c
         src/game/scenes/scene_handler.c
 )
 

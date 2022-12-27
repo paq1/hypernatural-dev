@@ -4,6 +4,7 @@
 #include "../enums/scene_enum.h"
 #include "scene_menu/scene_menu.h"
 #include "scene_donjon/scene_donjon.h"
+#include "scene_cabane/scene_cabane.h"
 #include "../../core/sdd/list/list.h"
 
 #include <SDL2/SDL.h>
@@ -13,6 +14,7 @@ typedef struct {
     // todo : ajouter les scenes ici
     scene_menu_t* scene_menu;
     scene_donjon_t* scene_donjon;
+    scene_cabane_t* scene_cabane;
 } scene_handler_t;
 
 scene_handler_t* create_scene_handler(SDL_Renderer* renderer);

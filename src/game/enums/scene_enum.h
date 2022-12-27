@@ -4,7 +4,8 @@
 enum scene_enum {
     // ajouter les scenes ici
     MENU,
-    DONJON
+    DONJON,
+    CABANE
 };
 
 #endif // __SCENE_ENUM_H__
