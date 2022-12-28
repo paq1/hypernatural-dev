@@ -41,14 +41,25 @@ void handle_scenes(scene_handler_t* scene_handler, list_t* events, SDL_Renderer*
 void free_scene_handler(scene_handler_t** scene_handler) {
     if (*scene_handler != NULL) {
         // todo : on supprime toute les scenes
-        free_scene_menu(&(*scene_handler)->scene_menu);
+        if ((*scene_handler)->scene_menu != NULL) {
+            free_scene_menu(&(*scene_handler)->scene_menu);
+        }
         if ((*scene_handler)->scene_menu != NULL) {
             fprintf(stderr, "ERROR: la scene menu n'a pas ete liberee\n");
         }
-
-        free_scene_donjon(&(*scene_handler)->scene_donjon);
+        
+        if ((*scene_handler)->scene_donjon != NULL) {
+            free_scene_donjon(&(*scene_handler)->scene_donjon);
+        }
         if ((*scene_handler)->scene_donjon != NULL) {
             fprintf(stderr, "ERROR: la scene donjon n'a pas ete liberee\n");
+        }
+
+        if ((*scene_handler)->scene_cabane != NULL) {
+            free_scene_cabane(&(*scene_handler)->scene_cabane);
+        }
+        if ((*scene_handler)->scene_cabane != NULL) {
+            fprintf(stderr, "ERROR: la scene cabane n'a pas ete liberee\n");
         }
 
         free(*scene_handler);
