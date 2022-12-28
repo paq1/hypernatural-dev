@@ -74,7 +74,7 @@ void free_scene_handler(scene_handler_t** scene_handler) {
             printf("INFO: lancement du mode donjon\n");
             scene_handler->current_scene = DONJON;
             if (scene_handler->scene_donjon == NULL) {
-                scene_handler->scene_donjon = create_scene_donjon();
+                scene_handler->scene_donjon = create_scene_donjon(renderer);
             }
         } else if (event == ESCAPE_PRESSED) {
             printf("INFO: goto scene cabane\n");
@@ -93,22 +93,8 @@ void free_scene_handler(scene_handler_t** scene_handler) {
         if (event == ESCAPE_PRESSED) {
             printf("INFO: retour au menu\n");
             scene_handler->current_scene = MENU;
-            // todo : free_scene_donjon(&scene_handler->scene_donjon);
+            free_scene_donjon(&scene_handler->scene_donjon);
         }
         events = events->next;
-    }
-}
-
-/*private*/scene_donjon_t* create_scene_donjon() {
-    scene_donjon_t* scene_donjon = (scene_donjon_t*) malloc(sizeof(scene_donjon_t));
-    *scene_donjon = (scene_donjon_t) { "Donjon" };
-
-    return scene_donjon;
-}
-
-/*private*/void free_scene_donjon(scene_donjon_t** scene_donjon) {
-    if (*scene_donjon != NULL) {
-        free(*scene_donjon);
-        *scene_donjon = NULL;
     }
 }
