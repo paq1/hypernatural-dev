@@ -12,10 +12,12 @@ sprite_factory_t* get_sprite_factory(SDL_Renderer *renderer) {
   return sprite_factory;
 }
 
-void free_sprite_factory(sprite_factory_t** sprite_factory) {
-  free_sprite(&(*sprite_factory)->sprite_test);
-  free(*sprite_factory);
-  *sprite_factory = NULL;
+void free_sprite_factory() {
+  if (sprite_factory != NULL) {
+    free_sprite(&sprite_factory->sprite_test);
+    free(sprite_factory);
+    sprite_factory = NULL;
+  }
 }
 
 /*private*/sprite_factory_t * create_sprite_factory(SDL_Renderer *renderer) {

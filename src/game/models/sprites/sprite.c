@@ -1,7 +1,7 @@
 #include "sprite.h"
 
 sprite_t * create_sprite_bmp(const char *path, SDL_Renderer *renderer) {
-    SDL_Surface *surfaceSmiley = SDL_LoadBMP("assets/sprites/smiley_sdl_seed.bmp");
+    SDL_Surface *surfaceSmiley = SDL_LoadBMP(path);
     if (surfaceSmiley == NULL) {
         return NULL;
     }

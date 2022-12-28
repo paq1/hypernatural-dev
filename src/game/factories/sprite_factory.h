@@ -8,8 +8,7 @@ typedef struct {
     sprite_t* sprite_test;
 }sprite_factory_t;
 
-
 sprite_factory_t * get_sprite_factory(SDL_Renderer *renderer);
-void free_sprite_factory(sprite_factory_t** sprite_factory);
+void free_sprite_factory();
 
 #endif // __SPRITE_FACTORY_H__

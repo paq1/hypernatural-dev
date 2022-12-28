@@ -11,6 +11,8 @@ typedef struct {
     char* title;
     // todo : mettre les elements du menu ici
     text_t* text_titre;
+
+    double x_test;
 } scene_menu_t;
 
 

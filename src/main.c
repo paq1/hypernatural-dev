@@ -8,6 +8,7 @@
 #include "core/sdd/list/list.h"
 #include "game/enums/events_enum.h"
 #include "game/factories/font_factory.h"
+#include "game/factories/sprite_factory.h"
 
 int main(int arc, char * argv[]) {
 
@@ -123,6 +124,7 @@ int main(int arc, char * argv[]) {
         fprintf(stderr, "ERROR: le scene handler n'a pas ete liberee\n");
     }
     free_font_factory();
+    free_sprite_factory();
 
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
