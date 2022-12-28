@@ -20,19 +20,19 @@ scene_handler_t* create_scene_handler(SDL_Renderer* renderer) {
     return scene_handler;
 }
 
-void handle_scenes(scene_handler_t* scene_handler, list_t* events, SDL_Renderer* renderer) {
+void handle_scenes(scene_handler_t* scene_handler, list_t* events, SDL_Renderer* renderer, double dt) {
     if (scene_handler->current_scene == MENU) {
-        update_scene_menu(scene_handler->scene_menu, events);
+        update_scene_menu(scene_handler->scene_menu, events, dt);
         draw_scene_menu(scene_handler->scene_menu, renderer);
         gestion_evenement_menu(scene_handler, events, renderer);
     }
     else if (scene_handler->current_scene == DONJON) {
-        update_scene_donjon(scene_handler->scene_donjon, events);
+        update_scene_donjon(scene_handler->scene_donjon, events, dt);
         draw_scene_donjon(scene_handler->scene_donjon, renderer);
         gestion_evenement_donjon(scene_handler, events);
     } else if (scene_handler->current_scene == CABANE) {
         // todo : ajouter la gestion de la scene cabane
-        update_scene_cabane(scene_handler->scene_cabane, events);
+        update_scene_cabane(scene_handler->scene_cabane, events, dt);
         draw_scene_cabane(scene_handler->scene_cabane, renderer);
         // gestion_evenement_cabane(scene_handler, events);
     }

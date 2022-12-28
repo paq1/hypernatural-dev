@@ -17,7 +17,7 @@ scene_menu_t* create_scene_menu(SDL_Renderer* renderer) {
     return scene_menu;
 }
 
-void update_scene_menu(scene_menu_t* scene_menu, list_t* events) {
+void update_scene_menu(scene_menu_t* scene_menu, list_t* events, double dt) {
     while (events) {
         enum event_enum event = *((enum event_enum*)(events->data));
         if (event == SPACE_BAR_PRESSED) {

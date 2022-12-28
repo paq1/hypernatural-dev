@@ -18,7 +18,7 @@ typedef struct {
 } scene_handler_t;
 
 scene_handler_t* create_scene_handler(SDL_Renderer* renderer);
-void handle_scenes(scene_handler_t* scene_handler, list_t* events, SDL_Renderer* renderer);
+void handle_scenes(scene_handler_t* scene_handler, list_t* events, SDL_Renderer* renderer, double dt);
 void free_scene_handler(scene_handler_t** scene_handler);
 
 #endif // __SCENE_HANDLER_H__

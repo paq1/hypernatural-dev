@@ -58,6 +58,11 @@ int main(int arc, char * argv[]) {
     enum event_enum* escape_pressed = (enum event_enum*) malloc(sizeof(enum event_enum));
     *escape_pressed = ESCAPE_PRESSED;
 
+    unsigned int old_ticks = SDL_GetTicks();
+    double dt = 0.0;
+    double timer = 0.0;
+    int frames = 0;
+
     while (launched) {
         SDL_Event event;
         list_t* events = NULL; // les evenement que l'on souhaite catcher pour les donner à nos scenes :)
@@ -81,19 +86,30 @@ int main(int arc, char * argv[]) {
             }
         }
 
+        unsigned int new_ticks = SDL_GetTicks();
+        dt = (new_ticks - old_ticks) / 1000.0;
+        old_ticks = new_ticks;
+
+        timer += dt;
+        frames++;
+        if (timer > 1.0) {
+            // printf("FPS: %d\n", frames);
+            timer = 0.0;
+            frames = 0;
+        }
+
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         
         SDL_RenderClear(renderer);
 
         // maj et affiche les scenes
-        handle_scenes(scene_handler, events, renderer);
+        handle_scenes(scene_handler, events, renderer, dt);
 
         // suppression de la liste d'evenement dans le but de la clean
         free_list(&events);
         if (events) {
             fprintf(stderr, "ERROR: la liste d'evenements n'a pas ete liberee\n");
         }
-
         
         SDL_RenderPresent(renderer);
     }

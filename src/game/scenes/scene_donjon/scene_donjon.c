@@ -7,7 +7,7 @@
 
 #include "../../enums/events_enum.h"
 
-void update_scene_donjon(scene_donjon_t* scene_donjon, list_t* events) {
+void update_scene_donjon(scene_donjon_t* scene_donjon, list_t* events, double dt) {
     
     while (events) {
         enum event_enum event = *((enum event_enum*)(events->data));

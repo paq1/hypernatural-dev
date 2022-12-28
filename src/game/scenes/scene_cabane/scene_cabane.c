@@ -8,7 +8,7 @@ scene_cabane_t* create_scene_cabane(SDL_Renderer* renderer) {
     // todo : initialiser les elements de la cabane ici
     return scene_cabane;
 }
-void update_scene_cabane(scene_cabane_t* scene_cabane, list_t* events) {
+void update_scene_cabane(scene_cabane_t* scene_cabane, list_t* events, double dt) {
     while (events) {
         enum event_enum event = *((enum event_enum*)(events->data));
         //todo ajouter les evenements si on en a

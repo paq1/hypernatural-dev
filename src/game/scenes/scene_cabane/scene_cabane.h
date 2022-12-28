@@ -12,7 +12,7 @@ typedef struct {
 } scene_cabane_t;
 
 scene_cabane_t* create_scene_cabane(SDL_Renderer* renderer);
-void update_scene_cabane(scene_cabane_t* scene_cabane, list_t* events);
+void update_scene_cabane(scene_cabane_t* scene_cabane, list_t* events, double dt);
 void draw_scene_cabane(scene_cabane_t* scene_cabane, SDL_Renderer* renderer);
 
 void free_scene_cabane(scene_cabane_t** scene_cabane);

@@ -15,7 +15,7 @@ typedef struct {
 
 
 scene_menu_t* create_scene_menu(SDL_Renderer* renderer);
-void update_scene_menu(scene_menu_t* scene_menu, list_t* events); // todo : d'autre params pourront etre ajouté par la suite
+void update_scene_menu(scene_menu_t* scene_menu, list_t* events, double dt); // todo : d'autre params pourront etre ajouté par la suite
 void draw_scene_menu(scene_menu_t* scene_menu, SDL_Renderer* renderer); // todo : d'autre params pourront etre ajouté par la suite
 
 void free_scene_menu(scene_menu_t** scene_menu);
