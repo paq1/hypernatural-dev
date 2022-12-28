@@ -18,6 +18,8 @@ add_executable(
         src/main.c
         src/core/sdd/list/list.c
         src/game/factories/font_factory.c
+        src/game/factories/sprite_factory.c
+        src/game/models/sprites/sprite.c
         src/game/services/text_service.c
         src/game/scenes/scene_menu/scene_menu.c
         src/game/scenes/scene_donjon/scene_donjon.c

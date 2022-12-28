@@ -1,0 +1,29 @@
+#include "sprite_factory.h"
+#include <stdlib.h>
+#include <stdio.h>
+
+/*private*/sprite_factory_t* create_sprite_factory();
+/*private*/sprite_factory_t* sprite_factory = NULL;
+
+sprite_factory_t* get_sprite_factory(SDL_Renderer *renderer) {
+  if (sprite_factory == NULL) {
+    sprite_factory = create_sprite_factory(renderer);
+  }
+  return sprite_factory;
+}
+
+void free_sprite_factory(sprite_factory_t** sprite_factory) {
+  free_sprite(&(*sprite_factory)->sprite_test);
+  free(*sprite_factory);
+  *sprite_factory = NULL;
+}
+
+/*private*/sprite_factory_t * create_sprite_factory(SDL_Renderer *renderer) {
+  sprite_factory_t* sprite_factory = malloc(sizeof(sprite_factory_t));
+  sprite_factory->sprite_test = create_sprite_bmp("../assets/sprites/test/test.bmp", renderer);
+  if (sprite_factory->sprite_test == NULL) {
+    printf("ERROR: sprite test non charge\n");
+    exit(EXIT_FAILURE);
+  }
+  return sprite_factory;
+}
