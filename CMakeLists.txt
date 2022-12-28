@@ -36,6 +36,6 @@ endif(WIN32)
 if (UNIX)
         target_link_libraries(
                 ${NOM_PROJET}
-                -lSDL2 -lSDL2_mixer
+                -lSDL2 -lSDL2_mixer -lSDL2_ttf
         )
 endif(UNIX)
