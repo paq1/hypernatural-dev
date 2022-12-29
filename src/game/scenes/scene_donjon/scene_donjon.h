@@ -5,15 +5,12 @@
 
 #include "../../../core/sdd/list/list.h"
 
-
-typedef struct {
-    int** tilemap;
-} tilemap_t;
+#include "tilemap/tilemap.h"
 
 typedef struct {
     char* title;
 
-    tilemap_t tilemap;
+    tilemap_t* tilemap;
     // todo : mettre les elements du donjon ici
 
 } scene_donjon_t;
