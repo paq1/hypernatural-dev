@@ -94,7 +94,7 @@ int main(int arc, char * argv[]) {
         timer += dt;
         frames++;
         if (timer > 1.0) {
-            // printf("FPS: %d\n", frames);
+            printf("FPS: %d\n", frames);
             timer = 0.0;
             frames = 0;
         }

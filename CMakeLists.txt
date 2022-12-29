@@ -17,6 +17,8 @@ add_executable(
         ${NOM_PROJET} 
         src/main.c
         src/core/sdd/list/list.c
+        src/core/sdd/option/option.c
+        src/core/sdd/vecteur/vecteur2d.c
         src/game/factories/font_factory.c
         src/game/factories/sprite_factory.c
         src/game/models/sprites/sprite.c

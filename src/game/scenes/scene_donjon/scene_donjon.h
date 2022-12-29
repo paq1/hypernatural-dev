@@ -5,9 +5,17 @@
 
 #include "../../../core/sdd/list/list.h"
 
+
+typedef struct {
+    int** tilemap;
+} tilemap_t;
+
 typedef struct {
     char* title;
+
+    tilemap_t tilemap;
     // todo : mettre les elements du donjon ici
+
 } scene_donjon_t;
 
 scene_donjon_t* create_scene_donjon(SDL_Renderer* renderer);
