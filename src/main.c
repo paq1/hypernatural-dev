@@ -9,6 +9,7 @@
 #include "core/sdd/list/list.h"
 #include "game/enums/events_enum.h"
 #include "game/factories/font_factory.h"
+#include "game/factories/music_factory.h"
 #include "game/factories/sprite_factory.h"
 #include "game/services/text_service.h"
 
@@ -148,6 +149,7 @@ int main(int arc, char * argv[]) {
     }
     free_font_factory();
     free_sprite_factory();
+    free_music_factory();
 
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
