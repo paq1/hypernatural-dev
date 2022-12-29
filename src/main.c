@@ -9,6 +9,7 @@
 #include "game/enums/events_enum.h"
 #include "game/factories/font_factory.h"
 #include "game/factories/sprite_factory.h"
+#include "game/services/text_service.h"
 
 int main(int arc, char * argv[]) {
 
@@ -64,6 +65,16 @@ int main(int arc, char * argv[]) {
     double timer = 0.0;
     int frames = 0;
 
+    SDL_Color color = {255, 255, 255};  
+    text_t* fps_text = create_text(
+        renderer, 
+        "fps :", 
+        0, 
+        0, 
+        get_font_factory()->main_font, 
+        color
+    );
+
     while (launched) {
         SDL_Event event;
         list_t* events = NULL; // les evenement que l'on souhaite catcher pour les donner à nos scenes :)
@@ -94,7 +105,9 @@ int main(int arc, char * argv[]) {
         timer += dt;
         frames++;
         if (timer > 1.0) {
-            printf("FPS: %d\n", frames);
+            char buffer[50];
+            sprintf(buffer, "fps : %d", frames);
+            fps_text = get_updated_text_with_value(renderer, fps_text, buffer, get_font_factory()->main_font);
             timer = 0.0;
             frames = 0;
         }
@@ -105,6 +118,7 @@ int main(int arc, char * argv[]) {
 
         // maj et affiche les scenes
         handle_scenes(scene_handler, events, renderer, dt);
+        draw_text(fps_text, renderer);
 
         // suppression de la liste d'evenement dans le but de la clean
         free_list(&events);
@@ -118,6 +132,8 @@ int main(int arc, char * argv[]) {
     // suppression des evenements
     free(space_bar_pressed);
     free(escape_pressed);
+
+    free_text(&fps_text);
 
     free_scene_handler(&scene_handler);
     if (scene_handler != NULL) {
