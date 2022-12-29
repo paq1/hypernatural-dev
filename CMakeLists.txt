@@ -20,10 +20,12 @@ add_executable(
         src/core/sdd/option/option.c
         src/core/sdd/vecteur/vecteur2d.c
         src/game/factories/font_factory.c
+        src/game/factories/music_factory.c
         src/game/factories/sprite_factory.c
         src/game/models/sprites/sprite.c
         src/game/services/text_service.c
         src/game/services/draw_sprite_service.c
+        src/game/services/music_service.c
         src/game/scenes/scene_menu/scene_menu.c
         src/game/scenes/scene_donjon/scene_donjon.c
         src/game/scenes/scene_donjon/tilemap/tilemap.c
@@ -35,7 +37,7 @@ add_executable(
 if (WIN32)
         target_link_libraries(
                 ${NOM_PROJET}
-                -lmingw32 -lSDL2main -lSDL2 -lSDL2_ttf
+                -lmingw32 -lSDL2main -lSDL2 -lSDL2_ttf -lSDL2_mixer
         )
 endif(WIN32)
 

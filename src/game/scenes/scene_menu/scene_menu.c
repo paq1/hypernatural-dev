@@ -9,6 +9,7 @@
 #include "../../factories/font_factory.h"
 #include "../../factories/sprite_factory.h"
 #include "../../services/draw_sprite_service.h"
+#include "../../services/music_service.h"
 
 scene_menu_t* create_scene_menu(SDL_Renderer* renderer) {
     scene_menu_t* scene_menu = (scene_menu_t*) malloc(sizeof(scene_menu_t));
@@ -20,6 +21,9 @@ scene_menu_t* create_scene_menu(SDL_Renderer* renderer) {
 }
 
 void update_scene_menu(scene_menu_t* scene_menu, list_t* events, double dt) {
+
+    play_music_menu();
+
     while (events) {
         enum event_enum event = *((enum event_enum*)(events->data));
         if (event == SPACE_BAR_PRESSED) {
@@ -35,6 +39,7 @@ void update_scene_menu(scene_menu_t* scene_menu, list_t* events, double dt) {
     }
 
 }
+
 void draw_scene_menu(scene_menu_t* scene_menu, SDL_Renderer* renderer) {
     draw_text(scene_menu->text_titre, renderer);
     draw_sprite_with_scale(get_sprite_factory(renderer)->sprite_test, renderer, scene_menu->x_test, 200, 4.0, 4.0);

@@ -4,6 +4,7 @@
 #include <stdlib.h>
 
 #include "../enums/events_enum.h"
+#include "../services/music_service.h"
 
 /*private*/void gestion_evenement_menu(scene_handler_t* scene_handler, list_t* events, SDL_Renderer* renderer);
 /*private*/void gestion_evenement_donjon(scene_handler_t* scene_handler, list_t* events);
@@ -76,12 +77,14 @@ void free_scene_handler(scene_handler_t** scene_handler) {
             if (scene_handler->scene_donjon == NULL) {
                 scene_handler->scene_donjon = create_scene_donjon(renderer);
             }
+            stop_music_menu();
         } else if (event == ESCAPE_PRESSED) {
             printf("INFO: goto scene cabane\n");
             scene_handler->current_scene = CABANE;
             if (scene_handler->scene_cabane == NULL) {
                 scene_handler->scene_cabane = create_scene_cabane(renderer);
             }
+            stop_music_menu();
         }
         events = events->next;
     }
