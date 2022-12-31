@@ -67,6 +67,10 @@ int main(int arc, char * argv[]) {
     *space_bar_pressed = SPACE_BAR_PRESSED;
     enum event_enum* escape_pressed = (enum event_enum*) malloc(sizeof(enum event_enum));
     *escape_pressed = ESCAPE_PRESSED;
+    enum event_enum* right_pressed = (enum event_enum*) malloc(sizeof(enum event_enum));
+    *right_pressed = RIGHT_PRESSED;
+    enum event_enum* left_pressed = (enum event_enum*) malloc(sizeof(enum event_enum));
+    *left_pressed = LEFT_PRESSED;
 
     unsigned int old_ticks = SDL_GetTicks();
     double dt = 0.0;
@@ -100,6 +104,14 @@ int main(int arc, char * argv[]) {
                     if (event.key.keysym.sym == SDLK_ESCAPE) {
                         // printf("space pressed\n");
                         events = list_prepend(events, (void*) escape_pressed);
+                    }
+                    if (event.key.keysym.sym == SDLK_RIGHT) {
+                        printf("right pressed\n");
+                        events = list_prepend(events, (void*) right_pressed);
+                    }
+                    if (event.key.keysym.sym == SDLK_LEFT) {
+                        printf("left pressed\n");
+                        events = list_prepend(events, (void*) left_pressed);
                     }
                 default:
                     break;
@@ -140,6 +152,8 @@ int main(int arc, char * argv[]) {
     // suppression des evenements
     free(space_bar_pressed);
     free(escape_pressed);
+    free(right_pressed);
+    free(left_pressed);
 
     free_text(&fps_text);
 

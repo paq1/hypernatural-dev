@@ -8,10 +8,20 @@
 #include "../../services/text_service.h"
 
 typedef struct {
+    int x, y;
+} cursor_t;
+
+typedef struct {
     char* title;
     // todo : mettre les elements du menu ici
     text_t* text_titre;
+    text_t* text_aventure;
+    text_t* text_donjon;
+    text_t* text_options;
+
     double x_test;
+    int cursor_index;
+    cursor_t cursor;
 } scene_menu_t;
 
 

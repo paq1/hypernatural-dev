@@ -71,14 +71,14 @@ void free_scene_handler(scene_handler_t** scene_handler) {
 /*private*/void gestion_evenement_menu(scene_handler_t* scene_handler, list_t* events, SDL_Renderer* renderer) {
     while (events) {
         enum event_enum event = *((enum event_enum*)(events->data));
-        if (event == SPACE_BAR_PRESSED) {
+        if (event == SPACE_BAR_PRESSED && scene_handler->scene_menu->cursor_index == 1) {
             printf("INFO: lancement du mode donjon\n");
             scene_handler->current_scene = DONJON;
             if (scene_handler->scene_donjon == NULL) {
                 scene_handler->scene_donjon = create_scene_donjon(renderer);
             }
             stop_music_menu();
-        } else if (event == ESCAPE_PRESSED) {
+        } else if (event == SPACE_BAR_PRESSED && scene_handler->scene_menu->cursor_index == 0) {
             printf("INFO: goto scene cabane\n");
             scene_handler->current_scene = CABANE;
             if (scene_handler->scene_cabane == NULL) {

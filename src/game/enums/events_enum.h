@@ -3,7 +3,9 @@
 
 enum event_enum {
     SPACE_BAR_PRESSED,
-    ESCAPE_PRESSED
+    ESCAPE_PRESSED,
+    RIGHT_PRESSED,
+    LEFT_PRESSED,
 };
 
 #endif // __EVENTS_ENUM_H__
