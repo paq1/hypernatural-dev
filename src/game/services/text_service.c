@@ -37,7 +37,7 @@ text_t* get_updated_text_with_value(SDL_Renderer* renderer, text_t* text, char* 
     }
     SDL_FreeSurface(surface_text);
 
-    free(text->texture);
+    SDL_DestroyTexture(text->texture);
     text->texture = texture_text;
     return text;
 }
