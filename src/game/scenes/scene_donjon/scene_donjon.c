@@ -8,6 +8,7 @@
 #include "../../enums/events_enum.h"
 #include "../../services/draw_sprite_service.h"
 #include "../../factories/sprite_factory.h"
+#include "../../services/music_service.h"
 
 scene_donjon_t* create_scene_donjon(SDL_Renderer* renderer) {
     scene_donjon_t* scene_donjon = malloc(sizeof(scene_donjon_t));
@@ -16,7 +17,7 @@ scene_donjon_t* create_scene_donjon(SDL_Renderer* renderer) {
     return scene_donjon;
 }
 void update_scene_donjon(scene_donjon_t* scene_donjon, list_t* events, double dt) {
-    
+    play_music_donjon();
     while (events) {
         enum event_enum event = *((enum event_enum*)(events->data));
         if (event == SPACE_BAR_PRESSED) {

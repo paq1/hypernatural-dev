@@ -5,6 +5,7 @@
 
 typedef struct {
     Mix_Music* music_menu;
+    Mix_Music* music_donjon;
 } music_factory_t;
 
 music_factory_t* get_music_factory();

@@ -97,6 +97,7 @@ void free_scene_handler(scene_handler_t** scene_handler) {
             printf("INFO: retour au menu\n");
             scene_handler->current_scene = MENU;
             free_scene_donjon(&scene_handler->scene_donjon);
+            stop_music();
         }
         events = events->next;
     }
