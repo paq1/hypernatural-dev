@@ -168,8 +168,9 @@ int main(int arc, char * argv[]) {
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     Mix_Quit();
-    SDL_Quit();
     TTF_Quit();
+    SDL_Quit();
+    
 
     return EXIT_SUCCESS;
 }
