@@ -111,44 +111,34 @@ int main(int arc, char * argv[]) {
                     break;
                 case SDL_KEYDOWN:
                     if (event.key.keysym.sym == SDLK_SPACE) {
-                        printf("space pressed (main)\n");
                         events = list_prepend(events, (void*) space_bar_pressed);
                     }
                     if (event.key.keysym.sym == SDLK_ESCAPE) {
-                        // printf("space pressed\n");
                         events = list_prepend(events, (void*) escape_pressed);
                     }
                     if (event.key.keysym.sym == SDLK_RIGHT) {
-                        printf("right pressed\n");
                         events = list_prepend(events, (void*) right_pressed);
                     }
                     if (event.key.keysym.sym == SDLK_LEFT) {
-                        printf("left pressed\n");
                         events = list_prepend(events, (void*) left_pressed);
                     }
                     if (event.key.keysym.sym == SDLK_UP) {
-                        printf("up pressed\n");
                         events = list_prepend(events, (void*) up_pressed);
                     }
                     if (event.key.keysym.sym == SDLK_DOWN) {
-                        printf("down pressed\n");
                         events = list_prepend(events, (void*) down_pressed);
                     }
                 case SDL_KEYUP:
                     if (event.key.keysym.sym == SDLK_RIGHT) {
-                        printf("right unpressed\n");
                         events = list_prepend(events, (void*) right_unpressed);
                     }
                     if (event.key.keysym.sym == SDLK_LEFT) {
-                        printf("left unpressed\n");
                         events = list_prepend(events, (void*) left_unpressed);
                     }
                     if (event.key.keysym.sym == SDLK_UP) {
-                        printf("up unpressed\n");
                         events = list_prepend(events, (void*) up_unpressed);
                     }
                     if (event.key.keysym.sym == SDLK_DOWN) {
-                        printf("down unpressed\n");
                         events = list_prepend(events, (void*) down_unpressed);
                     }
                 default:
