@@ -30,24 +30,24 @@ void free_tilemap(tilemap_t** tilemap) {
     *tilemap = NULL;
 }
 
-void draw_tilemap(tilemap_t* tilemap, SDL_Renderer* renderer) {
+void draw_tilemap(tilemap_t* tilemap, SDL_Renderer* renderer, camera_t camera) {
     for (int i = 0; i < tilemap->rows; i++) {
         for (int j = 0; j < tilemap->cols; j++) {
             if (tilemap->tilemap[i][j] == 0) {
                 draw_sprite_with_scale(
                     get_sprite_factory(renderer)->sprite_tile_grass, 
                     renderer, 
-                    i * 32, 
-                    j * 32, 
-                    0.125, 
+                    j * 32 + camera.x,
+                    i * 32 + camera.y,
+                    0.125,
                     0.125
                 );
             } else if (tilemap->tilemap[i][j] == 1) {
                 draw_sprite_with_scale(
                     get_sprite_factory(renderer)->sprite_tile_wall, 
                     renderer, 
-                    i * 32, 
-                    j * 32, 
+                    j * 32 + camera.x,
+                    i * 32 + camera.y,
                     0.125,
                     0.125
                 );

@@ -6,6 +6,12 @@ enum event_enum {
     ESCAPE_PRESSED,
     RIGHT_PRESSED,
     LEFT_PRESSED,
+    RIGHT_UNPRESSED,
+    LEFT_UNPRESSED,
+    UP_PRESSED,
+    DOWN_PRESSED,
+    UP_UNPRESSED,
+    DOWN_UNPRESSED,
 };
 
 #endif // __EVENTS_ENUM_H__

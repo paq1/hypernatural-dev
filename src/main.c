@@ -71,6 +71,19 @@ int main(int arc, char * argv[]) {
     *right_pressed = RIGHT_PRESSED;
     enum event_enum* left_pressed = (enum event_enum*) malloc(sizeof(enum event_enum));
     *left_pressed = LEFT_PRESSED;
+    enum event_enum* up_pressed = (enum event_enum*) malloc(sizeof(enum event_enum));
+    *up_pressed = UP_PRESSED;
+    enum event_enum* down_pressed = (enum event_enum*) malloc(sizeof(enum event_enum));
+    *down_pressed = DOWN_PRESSED;
+
+    enum event_enum* right_unpressed = (enum event_enum*) malloc(sizeof(enum event_enum));
+    *right_unpressed = RIGHT_UNPRESSED;
+    enum event_enum* left_unpressed = (enum event_enum*) malloc(sizeof(enum event_enum));
+    *left_unpressed = LEFT_UNPRESSED;
+    enum event_enum* up_unpressed = (enum event_enum*) malloc(sizeof(enum event_enum));
+    *up_unpressed = UP_UNPRESSED;
+    enum event_enum* down_unpressed = (enum event_enum*) malloc(sizeof(enum event_enum));
+    *down_unpressed = DOWN_UNPRESSED;
 
     unsigned int old_ticks = SDL_GetTicks();
     double dt = 0.0;
@@ -113,6 +126,31 @@ int main(int arc, char * argv[]) {
                         printf("left pressed\n");
                         events = list_prepend(events, (void*) left_pressed);
                     }
+                    if (event.key.keysym.sym == SDLK_UP) {
+                        printf("up pressed\n");
+                        events = list_prepend(events, (void*) up_pressed);
+                    }
+                    if (event.key.keysym.sym == SDLK_DOWN) {
+                        printf("down pressed\n");
+                        events = list_prepend(events, (void*) down_pressed);
+                    }
+                case SDL_KEYUP:
+                    if (event.key.keysym.sym == SDLK_RIGHT) {
+                        printf("right unpressed\n");
+                        events = list_prepend(events, (void*) right_unpressed);
+                    }
+                    if (event.key.keysym.sym == SDLK_LEFT) {
+                        printf("left unpressed\n");
+                        events = list_prepend(events, (void*) left_unpressed);
+                    }
+                    if (event.key.keysym.sym == SDLK_UP) {
+                        printf("up unpressed\n");
+                        events = list_prepend(events, (void*) up_unpressed);
+                    }
+                    if (event.key.keysym.sym == SDLK_DOWN) {
+                        printf("down unpressed\n");
+                        events = list_prepend(events, (void*) down_unpressed);
+                    }
                 default:
                     break;
             }
@@ -154,6 +192,12 @@ int main(int arc, char * argv[]) {
     free(escape_pressed);
     free(right_pressed);
     free(left_pressed);
+    free(up_pressed);
+    free(down_pressed);
+    free(right_unpressed);
+    free(left_unpressed);
+    free(up_unpressed);
+    free(down_unpressed);
 
     free_text(&fps_text);
 
