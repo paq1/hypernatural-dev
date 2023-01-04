@@ -45,3 +45,22 @@ void free_list(list_t** list) {
     }
     *list = NULL;
 }
+
+bool exist_list_int(list_t* list, int data) {
+    while (list) {
+        if (*((int*) list->data) == data) { return true; }
+        list = list->next;
+    }
+
+    return false;
+}
+
+void printf_list_int(list_t* list) {
+    printf("evenements : {");
+    while (list) {
+        int current = *((int*) list->data);
+        printf("|%d|", current);
+        list = list->next;
+    }
+    printf("}\n");
+}

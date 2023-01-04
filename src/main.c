@@ -111,35 +111,52 @@ int main(int arc, char * argv[]) {
                     break;
                 case SDL_KEYDOWN:
                     if (event.key.keysym.sym == SDLK_SPACE) {
-                        events = list_prepend(events, (void*) space_bar_pressed);
+                        if (!exist_list_int(events, *space_bar_pressed))
+                            events = list_prepend(events, (void*) space_bar_pressed);
                     }
                     if (event.key.keysym.sym == SDLK_ESCAPE) {
-                        events = list_prepend(events, (void*) escape_pressed);
+                        if (!exist_list_int(events, *escape_pressed))
+                            events = list_prepend(events, (void*) escape_pressed);
                     }
                     if (event.key.keysym.sym == SDLK_RIGHT) {
-                        events = list_prepend(events, (void*) right_pressed);
+                        if (!exist_list_int(events, *right_pressed)) {
+                            events = list_prepend(events, (void*) right_pressed);
+                        }
                     }
                     if (event.key.keysym.sym == SDLK_LEFT) {
-                        events = list_prepend(events, (void*) left_pressed);
+                        if (!exist_list_int(events, *left_pressed)) {
+                            events = list_prepend(events, (void*) left_pressed);
+                        }
                     }
                     if (event.key.keysym.sym == SDLK_UP) {
-                        events = list_prepend(events, (void*) up_pressed);
+                        if (!exist_list_int(events, *up_pressed))
+                            events = list_prepend(events, (void*) up_pressed);
                     }
                     if (event.key.keysym.sym == SDLK_DOWN) {
-                        events = list_prepend(events, (void*) down_pressed);
+                        if (!exist_list_int(events, *down_pressed)) {
+                            events = list_prepend(events, (void*) down_pressed);
+                        }
                     }
                 case SDL_KEYUP:
                     if (event.key.keysym.sym == SDLK_RIGHT) {
-                        events = list_prepend(events, (void*) right_unpressed);
+                        if (!exist_list_int(events, *right_unpressed)) {
+                            events = list_prepend(events, (void*) right_unpressed);
+                        }
                     }
                     if (event.key.keysym.sym == SDLK_LEFT) {
-                        events = list_prepend(events, (void*) left_unpressed);
+                        if (!exist_list_int(events, *left_unpressed)) {
+                            events = list_prepend(events, (void*) left_unpressed);
+                        }
                     }
                     if (event.key.keysym.sym == SDLK_UP) {
-                        events = list_prepend(events, (void*) up_unpressed);
+                        if (!exist_list_int(events, *up_unpressed)) {
+                            events = list_prepend(events, (void*) up_unpressed);
+                        }
                     }
                     if (event.key.keysym.sym == SDLK_DOWN) {
-                        events = list_prepend(events, (void*) down_unpressed);
+                        if (!exist_list_int(events, *down_unpressed)) {
+                            events = list_prepend(events, (void*) down_unpressed);
+                        }
                     }
                 default:
                     break;
@@ -163,6 +180,10 @@ int main(int arc, char * argv[]) {
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         
         SDL_RenderClear(renderer);
+
+        if (list_length(events) > 2) {
+            printf_list_int(events);
+        }
 
         // maj et affiche les scenes
         handle_scenes(scene_handler, events, renderer, dt);
