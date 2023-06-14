@@ -88,6 +88,9 @@ int main(int arc, char * argv[]) {
     unsigned int old_ticks = SDL_GetTicks();
     double dt = 0.0;
     double timer = 0.0;
+
+    double timer_debug_list_event = 0.0;
+
     int frames = 0;
 
     SDL_Color color = {255, 255, 255};  
@@ -104,61 +107,57 @@ int main(int arc, char * argv[]) {
         SDL_Event event;
         list_t* events = NULL; // les evenement que l'on souhaite catcher pour les donner à nos scenes :)
         
-        while (SDL_PollEvent(&event)) {
+        while (SDL_PollEvent(&event) != 0) {
             switch (event.type) {
                 case SDL_QUIT:
                     launched = SDL_FALSE;
                     break;
                 case SDL_KEYDOWN:
                     if (event.key.keysym.sym == SDLK_SPACE) {
-                        if (!exist_list_int(events, *space_bar_pressed))
-                            events = list_prepend(events, (void*) space_bar_pressed);
+                        if (!exist_list_int(events, (int) *space_bar_pressed))
+                            events = list_add_sorted(events, (void*) space_bar_pressed);
                     }
                     if (event.key.keysym.sym == SDLK_ESCAPE) {
-                        if (!exist_list_int(events, *escape_pressed))
-                            events = list_prepend(events, (void*) escape_pressed);
+                        if (!exist_list_int(events, (int) *escape_pressed))
+                            events = list_add_sorted(events, (void*) escape_pressed);
                     }
                     if (event.key.keysym.sym == SDLK_RIGHT) {
-                        if (!exist_list_int(events, *right_pressed)) {
-                            events = list_prepend(events, (void*) right_pressed);
-                        }
+                        if (!exist_list_int(events, *right_pressed) && !exist_list_int(events, (int) *right_unpressed))
+                            events = list_add_sorted(events, (void*) right_pressed);
                     }
                     if (event.key.keysym.sym == SDLK_LEFT) {
-                        if (!exist_list_int(events, *left_pressed)) {
-                            events = list_prepend(events, (void*) left_pressed);
-                        }
+                        if (!exist_list_int(events, *left_pressed) && !exist_list_int(events, (int) *left_unpressed))
+                            events = list_add_sorted(events, (void*) left_pressed);
                     }
                     if (event.key.keysym.sym == SDLK_UP) {
-                        if (!exist_list_int(events, *up_pressed))
-                            events = list_prepend(events, (void*) up_pressed);
+                        if (!exist_list_int(events, *up_pressed) && !exist_list_int(events, (int) *up_unpressed))
+                            events = list_add_sorted(events, (void*) up_pressed);
                     }
                     if (event.key.keysym.sym == SDLK_DOWN) {
-                        if (!exist_list_int(events, *down_pressed)) {
-                            events = list_prepend(events, (void*) down_pressed);
-                        }
+                        if (!exist_list_int(events, *down_pressed) && !exist_list_int(events, (int) *down_unpressed))
+                            events = list_add_sorted(events, (void*) down_pressed);
                     }
+                    break;
                 case SDL_KEYUP:
                     if (event.key.keysym.sym == SDLK_RIGHT) {
-                        if (!exist_list_int(events, *right_unpressed)) {
-                            events = list_prepend(events, (void*) right_unpressed);
-                        }
+                        if (!exist_list_int(events, *right_unpressed))
+                            events = list_add_sorted(events, (void*) right_unpressed);
                     }
                     if (event.key.keysym.sym == SDLK_LEFT) {
-                        if (!exist_list_int(events, *left_unpressed)) {
-                            events = list_prepend(events, (void*) left_unpressed);
-                        }
+                        if (!exist_list_int(events, *left_unpressed))
+                            events = list_add_sorted(events, (void*) left_unpressed);
                     }
                     if (event.key.keysym.sym == SDLK_UP) {
-                        if (!exist_list_int(events, *up_unpressed)) {
-                            events = list_prepend(events, (void*) up_unpressed);
-                        }
+                        if (!exist_list_int(events, *up_unpressed))
+                            events = list_add_sorted(events, (void*) up_unpressed);
                     }
                     if (event.key.keysym.sym == SDLK_DOWN) {
-                        if (!exist_list_int(events, *down_unpressed)) {
-                            events = list_prepend(events, (void*) down_unpressed);
-                        }
+                        if (!exist_list_int(events, *down_unpressed))
+                            events = list_add_sorted(events, (void*) down_unpressed);
                     }
+                    break;
                 default:
+//                    free_list(&events);
                     break;
             }
         }
@@ -181,7 +180,14 @@ int main(int arc, char * argv[]) {
         
         SDL_RenderClear(renderer);
 
-        if (list_length(events) > 2) {
+        if (timer_debug_list_event > 1.0) {
+            timer_debug_list_event = 0.0;
+            printf_list_int(events);
+        } else {
+            timer_debug_list_event += dt;
+        }
+
+        if (list_length(events) > 0) {
             printf_list_int(events);
         }
 

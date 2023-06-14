@@ -9,6 +9,7 @@ typedef struct list_t {
 } list_t;
 
 list_t* list_create(void* data);
+list_t* list_add_sorted(list_t* old, void* data);
 list_t* list_prepend(list_t* old, void* data);
 unsigned int list_length(list_t* list);
 void* get_data_list_at_index(list_t* list, unsigned int index);

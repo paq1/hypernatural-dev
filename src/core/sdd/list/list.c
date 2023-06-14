@@ -18,6 +18,23 @@ list_t* list_prepend(list_t* old, void* data) {
     return list;
 }
 
+list_t* list_add_sorted(list_t* old, void* data) {
+    list_t* node = create_list(data);
+
+    if (old == NULL) {
+        return node;
+    } else {
+        list_t* current = old;
+        while (current->next != NULL && (*(int*)(current->next->data)) < *((int*)data)) {
+            current = current->next;
+        }
+
+        node->next = current->next;
+        current->next = node;
+    }
+    return old;
+}
+
 unsigned int list_length(list_t* list) {
     unsigned int length = 0;
     while (list) {
