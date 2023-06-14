@@ -49,7 +49,7 @@ int main(int arc, char * argv[]) {
     }
 
     SDL_Renderer* renderer = SDL_CreateRenderer(
-        window, -1, SDL_RENDERER_ACCELERATED
+        window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC
     );
     if (renderer == NULL) {
         printf("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());

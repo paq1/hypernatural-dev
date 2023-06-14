@@ -35,19 +35,19 @@ void draw_tilemap(tilemap_t* tilemap, SDL_Renderer* renderer, camera_t camera) {
         for (int j = 0; j < tilemap->cols; j++) {
             if (tilemap->tilemap[i][j] == 0) {
                 draw_sprite_with_scale(
-                    get_sprite_factory(renderer)->sprite_tile_grass, 
-                    renderer, 
-                    j * 32 + camera.x,
-                    i * 32 + camera.y,
+                    get_sprite_factory(renderer)->sprite_tile_grass,
+                    renderer,
+                    (int)(j * 32.0 + camera.x),
+                    (int)(i * 32.0 + camera.y),
                     0.125,
                     0.125
                 );
             } else if (tilemap->tilemap[i][j] == 1) {
                 draw_sprite_with_scale(
-                    get_sprite_factory(renderer)->sprite_tile_wall, 
-                    renderer, 
-                    j * 32 + camera.x,
-                    i * 32 + camera.y,
+                    get_sprite_factory(renderer)->sprite_tile_wall,
+                    renderer,
+                    (int)(j * 32.0 + camera.x),
+                    (int)(i * 32.0 + camera.y),
                     0.125,
                     0.125
                 );

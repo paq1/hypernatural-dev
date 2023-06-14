@@ -28,7 +28,7 @@ void handle_scenes(scene_handler_t* scene_handler, list_t* events, SDL_Renderer*
         gestion_evenement_menu(scene_handler, events, renderer);
     }
     else if (scene_handler->current_scene == DONJON) {
-        update_scene_donjon(scene_handler->scene_donjon, events, dt);
+        update_scene_donjon(scene_handler->scene_donjon, events, dt, renderer);
         draw_scene_donjon(scene_handler->scene_donjon, renderer);
         gestion_evenement_donjon(scene_handler, events);
     } else if (scene_handler->current_scene == CABANE) {
