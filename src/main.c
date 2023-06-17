@@ -13,29 +13,14 @@
 #include "game/factories/sprite_factory.h"
 #include "game/services/text_service.h"
 
+void init_sdl();
+
 int main(int arc, char * argv[]) {
 
     const int SCREEN_WIDTH = 800;
     const int SCREEN_HEIGHT = 600;
 
-    if (SDL_Init( SDL_INIT_VIDEO | SDL_INIT_AUDIO ) < 0) {
-        printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
-        exit(EXIT_FAILURE);
-    }
-
-    if (TTF_Init() == -1) {
-        printf("SDL_ttf could not initialize! SDL_ttf Error: %s", TTF_GetError());
-        SDL_Quit();
-        exit(EXIT_FAILURE);
-    } else {
-        printf("[info] SDL_ttf started\n");
-    }
-
-    if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 ) {
-        printf( "SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError() );
-        TTF_Quit();
-        SDL_Quit();
-    }
+    init_sdl();
         
     SDL_Window* window = SDL_CreateWindow(
         "Hypernatural",
@@ -234,4 +219,25 @@ int main(int arc, char * argv[]) {
     
 
     return EXIT_SUCCESS;
+}
+
+void init_sdl() {
+    if (SDL_Init( SDL_INIT_VIDEO | SDL_INIT_AUDIO ) < 0) {
+        printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
+        exit(EXIT_FAILURE);
+    }
+
+    if (TTF_Init() == -1) {
+        printf("SDL_ttf could not initialize! SDL_ttf Error: %s", TTF_GetError());
+        SDL_Quit();
+        exit(EXIT_FAILURE);
+    } else {
+        printf("[info] SDL_ttf started\n");
+    }
+
+    if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 ) {
+        printf( "SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError() );
+        TTF_Quit();
+        SDL_Quit();
+    }
 }
